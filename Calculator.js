@@ -22,6 +22,9 @@ function Calculator(op) {
         switch (op) {
             // If there is no decimal point on the display - add it
             case '.':
+                if  (isNaN(parseInt(lastKey)) && lastKey != "."){
+                    display.textContent = 0;
+                }
                 if (display.textContent.lastIndexOf('.') == -1) {
                     display.textContent = display.textContent + op
                 }
@@ -102,7 +105,7 @@ function Calculator(op) {
                     }
                     else{
                         // If '=' was pressed multiple times - recalculate the displayed value with the same op and number
-                        display.textContent = calc(stackNum, lastOp, parseFloat(display.textContent));
+                        display.textContent = calc(parseFloat(display.textContent), lastOp, stackNum);
                     }
                     break;
             
